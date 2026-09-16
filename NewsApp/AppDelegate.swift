@@ -19,10 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
 
-        let viewController = NewListViewController()
-        let navigationController = UINavigationController(
-            rootViewController: viewController
-        )
+        let feedViewController = NewsFeedViewController()
+        let navigationController = UINavigationController(rootViewController: feedViewController)
+        navigationController.navigationBar.tintColor = .label
 
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

@@ -97,7 +97,8 @@ final class ArticleService: ArticleServiceProtocol {
             print("⬅️ Response Status Code: \(response.response?.statusCode ?? 0)")
 
             switch response.result {
-            case .success(let value):
+//            case .success(let value):
+            case .success:
 
 //                print("API SUCCESS")
 //                print("Total Articles: \(value.count)")
@@ -118,7 +119,8 @@ final class ArticleService: ArticleServiceProtocol {
 //                    ------------------------------
 //                    """)
 //                }
-
+                break
+                
             case .failure(let error):
 
                 print("API FAILED")

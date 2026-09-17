@@ -126,18 +126,18 @@ class NewsFeedViewController: UIViewController {
 
         categoriesCollectionView.leading == view.leading
         categoriesCollectionView.trailing == view.trailing
-        categoriesCollectionView.top == searchField.bottom + 16
-        categoriesCollectionView.height == 40
+        categoriesCollectionView.top == searchField.bottom + .ratioHeightBasedOniPhoneX(16)
+        categoriesCollectionView.height == .ratioHeightBasedOniPhoneX(40)
 
         tableView.leading == view.leading
         tableView.trailing == view.trailing
-        tableView.top == categoriesCollectionView.bottom + 8
+        tableView.top == categoriesCollectionView.bottom + .ratioHeightBasedOniPhoneX(8)
         tableView.bottom == view.bottom
 
         loadingIndicator.centerX == tableView.centerX
-        loadingIndicator.centerY == tableView.centerY - 40
+        loadingIndicator.centerY == tableView.centerY - .ratioHeightBasedOniPhoneX(40)
 
-        emptyStateLabel.centerY == tableView.centerY - 40
+        emptyStateLabel.centerY == tableView.centerY - .ratioHeightBasedOniPhoneX(40)
         emptyStateLabel.leading == tableView.leading + .ratioWidthBasedOniPhoneX(32)
         emptyStateLabel.trailing == tableView.trailing - .ratioWidthBasedOniPhoneX(32)
     }

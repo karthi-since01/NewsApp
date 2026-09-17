@@ -285,8 +285,10 @@ extension NewsFeedViewController: UICollectionViewDataSource, UICollectionViewDe
             return UICollectionViewCell()
         }
 
-        cell.configure(title: viewModel.categories[indexPath.item], isSelected: false)
-        cell.isSelected = indexPath.item == selectedCategoryIndex
+        cell.configure(
+            title: viewModel.categories[indexPath.item],
+            isSelected: indexPath.item == selectedCategoryIndex
+        )
         return cell
     }
 

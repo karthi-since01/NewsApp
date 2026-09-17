@@ -57,13 +57,13 @@ final class SearchFieldView: UIView {
 
         addSubviews(with: [iconImageView, textField, filterButton])
 
-        iconImageView.width == 18
-        iconImageView.height == 18
+        iconImageView.width == .ratioWidthBasedOniPhoneX(18)
+        iconImageView.height == .ratioHeightBasedOniPhoneX(18)
         iconImageView.leading == leading + .ratioWidthBasedOniPhoneX(14)
         iconImageView.centerY == centerY
 
-        filterButton.width == 22
-        filterButton.height == 22
+        filterButton.width == .ratioWidthBasedOniPhoneX(22)
+        filterButton.height == .ratioHeightBasedOniPhoneX(22)
         filterButton.trailing == trailing - .ratioWidthBasedOniPhoneX(14)
         filterButton.centerY == centerY
 

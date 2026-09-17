@@ -210,63 +210,63 @@ final class ArticleDetailViewController: UIViewController {
         // Top bar buttons constraints (floating over top image)
         backButton.leading == view.safeAreaLayoutGuide.leading + .ratioWidthBasedOniPhoneX(16)
         backButton.top == view.safeAreaLayoutGuide.top + .ratioHeightBasedOniPhoneX(8)
-        backButton.width == 36
-        backButton.height == 36
+        backButton.width == .ratioHeightBasedOniPhoneX(36)
+        backButton.height == .ratioHeightBasedOniPhoneX(36)
 
         moreButton.trailing == view.safeAreaLayoutGuide.trailing - .ratioWidthBasedOniPhoneX(16)
         moreButton.top == backButton.top
-        moreButton.width == 36
-        moreButton.height == 36
+        moreButton.width == .ratioHeightBasedOniPhoneX(36)
+        moreButton.height == .ratioHeightBasedOniPhoneX(36)
 
         saveButton.trailing == moreButton.leading - .ratioWidthBasedOniPhoneX(12)
         saveButton.top == backButton.top
-        saveButton.width == 36
-        saveButton.height == 36
+        saveButton.width == .ratioHeightBasedOniPhoneX(36)
+        saveButton.height == .ratioHeightBasedOniPhoneX(36)
 
         headerImageView.top == contentView.top
         headerImageView.leading == contentView.leading
         headerImageView.trailing == contentView.trailing
-        headerImageView.height == 300
+        headerImageView.height == .ratioHeightBasedOniPhoneX(300)
 
         categoryBadgeView.leading == contentView.leading + .ratioWidthBasedOniPhoneX(20)
-        categoryBadgeView.bottom == headerImageView.bottom - 24
+        categoryBadgeView.bottom == headerImageView.bottom - .ratioHeightBasedOniPhoneX(24)
 
         categoryLabel.leading == categoryBadgeView.leading + .ratioWidthBasedOniPhoneX(12)
-        categoryLabel.trailing == categoryBadgeView.trailing - 12
-        categoryLabel.top == categoryBadgeView.top + 6
-        categoryLabel.bottom == categoryBadgeView.bottom - 6
+        categoryLabel.trailing == categoryBadgeView.trailing - .ratioHeightBasedOniPhoneX(12)
+        categoryLabel.top == categoryBadgeView.top + .ratioHeightBasedOniPhoneX(6)
+        categoryLabel.bottom == categoryBadgeView.bottom - .ratioHeightBasedOniPhoneX(6)
 
-        cardContainerView.top == headerImageView.bottom - 20
+        cardContainerView.top == headerImageView.bottom - .ratioHeightBasedOniPhoneX(20)
         cardContainerView.leading == contentView.leading
         cardContainerView.trailing == contentView.trailing
         cardContainerView.bottom == contentView.bottom
 
-        titleLabel.top == cardContainerView.top + 24
+        titleLabel.top == cardContainerView.top + .ratioHeightBasedOniPhoneX(24)
         titleLabel.leading == cardContainerView.leading + .ratioWidthBasedOniPhoneX(20)
-        titleLabel.trailing == cardContainerView.trailing - 20
+        titleLabel.trailing == cardContainerView.trailing - .ratioHeightBasedOniPhoneX(20)
 
-        authorAvatarView.width == 28
-        authorAvatarView.height == 28
+        authorAvatarView.width == .ratioHeightBasedOniPhoneX(28)
+        authorAvatarView.height == .ratioHeightBasedOniPhoneX(28)
         authorAvatarView.leading == titleLabel.leading
-        authorAvatarView.top == titleLabel.bottom + 16
+        authorAvatarView.top == titleLabel.bottom + .ratioHeightBasedOniPhoneX(16)
 
         authorNameLabel.leading == authorAvatarView.trailing + .ratioWidthBasedOniPhoneX(10)
         authorNameLabel.top == authorAvatarView.top
         authorNameLabel.trailing == titleLabel.trailing
 
         dateLabel.leading == authorNameLabel.leading
-        dateLabel.top == authorNameLabel.bottom + 2
+        dateLabel.top == authorNameLabel.bottom + .ratioHeightBasedOniPhoneX(2)
         dateLabel.trailing == titleLabel.trailing
 
-        summaryLabel.top == authorAvatarView.bottom + 20
+        summaryLabel.top == authorAvatarView.bottom + .ratioHeightBasedOniPhoneX(20)
         summaryLabel.leading == titleLabel.leading
         summaryLabel.trailing == titleLabel.trailing
 
-        readFullArticleButton.top == summaryLabel.bottom + 32
+        readFullArticleButton.top == summaryLabel.bottom + .ratioHeightBasedOniPhoneX(32)
         readFullArticleButton.leading == titleLabel.leading
         readFullArticleButton.trailing == titleLabel.trailing
-        readFullArticleButton.height == 50
-        readFullArticleButton.bottom == cardContainerView.bottom - 40
+        readFullArticleButton.height == .ratioHeightBasedOniPhoneX(50)
+        readFullArticleButton.bottom == cardContainerView.bottom - .ratioHeightBasedOniPhoneX(40)
 
         // Button actions
         backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
@@ -275,7 +275,7 @@ final class ArticleDetailViewController: UIViewController {
         readFullArticleButton.addTarget(self, action: #selector(handleReadFullArticle), for: .touchUpInside)
 
         loadingIndicator.centerX == cardContainerView.centerX
-        loadingIndicator.top == summaryLabel.bottom + 10
+        loadingIndicator.top == summaryLabel.bottom + .ratioHeightBasedOniPhoneX(10)
     }
 
     private func bindViewModel() {

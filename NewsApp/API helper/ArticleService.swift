@@ -76,12 +76,12 @@ final class ArticleService: ArticleServiceProtocol {
             parameters["news_site"] = newsSite
         }
 
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("📰 ARTICLES API")
-        print("➡️ Method: GET")
-        print("➡️ Endpoint: \(baseURL)/articles/")
-        print("➡️ Request Parameters:")
-        print(parameters)
+//        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+//        print("ARTICLES API")
+//        print("Method: GET")
+//        print("Endpoint: \(baseURL)/articles/")
+//        print("Request Parameters:")
+//        print(parameters)
 
         return session.request(
             "\(baseURL)/articles/",
@@ -99,31 +99,31 @@ final class ArticleService: ArticleServiceProtocol {
             switch response.result {
             case .success(let value):
 
-                print("✅ API SUCCESS")
-                print("📊 Total Articles: \(value.count)")
-                print("📄 Articles Received: \(value.results.count)")
-                print("➡️ Next Page: \(value.next ?? "nil")")
-                print("⬅️ Previous Page: \(value.previous ?? "nil")")
+//                print("API SUCCESS")
+//                print("Total Articles: \(value.count)")
+//                print("Articles Received: \(value.results.count)")
+//                print("Next Page: \(value.next ?? "nil")")
+//                print("Previous Page: \(value.previous ?? "nil")")
 
-                print("📚 Article List:")
+//                print("Article List:")
 
-                for article in value.results {
-                    print("""
-                    ------------------------------
-                    ID: \(article.id)
-                    Title: \(article.title)
-                    Source: \(article.newsSite)
-                    Published: \(article.publishedAt)
-                    Image URL: \(article.imageUrl)
-                    ------------------------------
-                    """)
-                }
+//                for article in value.results {
+//                    print("""
+//                    ------------------------------
+//                    ID: \(article.id)
+//                    Title: \(article.title)
+//                    Source: \(article.newsSite)
+//                    Published: \(article.publishedAt)
+//                    Image URL: \(article.imageUrl)
+//                    ------------------------------
+//                    """)
+//                }
 
             case .failure(let error):
 
-                print("❌ API FAILED")
-                print("❌ Error: \(error)")
-                print("❌ Underlying Error: \(error.underlyingError?.localizedDescription ?? "nil")")
+                print("API FAILED")
+                print("Error: \(error)")
+                print("Underlying Error: \(error.underlyingError?.localizedDescription ?? "nil")")
             }
 
             self?.handle(response: response, completion: completion)
@@ -140,17 +140,17 @@ final class ArticleService: ArticleServiceProtocol {
             .responseDecodable(of: Article.self, decoder: decoder) { [weak self] response in
 
                 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-                print("📰 ARTICLE DETAIL API")
-                print("➡️ Method: GET")
-                print("➡️ Endpoint: \(self?.baseURL)/articles/\(id)/")
-                print("⬅️ Response Status Code: \(response.response?.statusCode ?? 0)")
-                print("📦 RAW FULL RESPONSE:")
+//                print("ARTICLE DETAIL API")
+//                print("Method: GET")
+//                print("Endpoint: \(self?.baseURL)/articles/\(id)/")
+//                print("Response Status Code: \(response.response?.statusCode ?? 0)")
+//                print("RAW FULL RESPONSE:")
                 
                 if let data = response.data,
                    let rawResponse = String(data: data, encoding: .utf8) {
                     print(rawResponse)
                 } else {
-                    print("❌ No response data")
+                    print("No response data")
                 }
 
                 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")

@@ -175,8 +175,6 @@ final class NewsFeedViewModel {
 
         let newsSite = selectedCategory == "All" ? nil : selectedCategory
 
-        print("🚀 FETCH START — token=\(requestToken) state=\(state) search='\(searchQuery)' offset=\(currentOffset)")
-
         listRequest = service.fetchArticles(
             limit: pageSize,
             offset: currentOffset,
@@ -186,13 +184,10 @@ final class NewsFeedViewModel {
             guard let self else { return }
 
             guard requestToken == self.currentRequestToken else {
-                print("🛑 FETCH DISCARDED — token=\(requestToken) is stale, current is \(self.currentRequestToken)")
                 completion?()
                 return
             }
-
-            print("✅ FETCH ACCEPTED — token=\(requestToken)")
-
+            
             self.isFetching = false
 
             switch result {

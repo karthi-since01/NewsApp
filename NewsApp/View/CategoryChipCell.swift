@@ -17,13 +17,7 @@ final class CategoryChipCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
-
-    /// Deliberately NOT using UICollectionViewCell's built-in `isSelected`.
-    /// UIKit drives that property itself on touch-down/touch-up and during
-    /// cell reuse, which races with any manual assignment we make in
-    /// `cellForItemAt` and can silently undo it. Owning our own flag, set
-    /// only through `configure(title:isSelected:)`, makes this the single
-    /// source of truth for the chip's appearance.
+    
     private var isChipSelected = false
 
     override init(frame: CGRect) {

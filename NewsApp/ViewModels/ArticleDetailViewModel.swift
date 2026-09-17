@@ -72,10 +72,10 @@ final class ArticleDetailViewModel {
     func fetchArticleDetails() {
         onStateChange?(.loading)
         
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("📰 FETCHING ARTICLE DETAIL FOR ID: \(article.id)")
-        print("➡️ Endpoint: https://api.spaceflightnewsapi.net/v4/articles/\(article.id)/")
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+//        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+//        print("FETCHING ARTICLE DETAIL FOR ID: \(article.id)")
+//        print("Endpoint: https://api.spaceflightnewsapi.net/v4/articles/\(article.id)/")
+//        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
         service.fetchArticle(id: article.id) { [weak self] result in
             guard let self else { return }

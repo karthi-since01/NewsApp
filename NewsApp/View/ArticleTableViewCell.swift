@@ -86,24 +86,24 @@ final class ArticleTableViewCell: UITableViewCell {
 
         contentView.addSubviews(with: [thumbnailImageView, sourceLabel, titleLabel, authorAvatarView, metaLabel])
 
-        thumbnailImageView.width == 84
-        thumbnailImageView.height == 84
+        thumbnailImageView.width == .ratioWidthBasedOniPhoneX(84)
+        thumbnailImageView.height == .ratioHeightBasedOniPhoneX(84)
         thumbnailImageView.leading == contentView.leading + .ratioWidthBasedOniPhoneX(16)
-        thumbnailImageView.top == contentView.top + 12
-        thumbnailImageView.bottom == contentView.bottom - 12
+        thumbnailImageView.top == contentView.top + .ratioHeightBasedOniPhoneX(12)
+        thumbnailImageView.bottom == contentView.bottom - .ratioHeightBasedOniPhoneX(12)
 
         sourceLabel.leading == thumbnailImageView.trailing + .ratioWidthBasedOniPhoneX(12)
-        sourceLabel.trailing == contentView.trailing - 16
-        sourceLabel.top == thumbnailImageView.top + 2
+        sourceLabel.trailing == contentView.trailing - .ratioWidthBasedOniPhoneX(16)
+        sourceLabel.top == thumbnailImageView.top + .ratioHeightBasedOniPhoneX(2)
 
         titleLabel.leading == sourceLabel.leading
         titleLabel.trailing == sourceLabel.trailing
-        titleLabel.top == sourceLabel.bottom + 4
+        titleLabel.top == sourceLabel.bottom + .ratioHeightBasedOniPhoneX(4)
 
-        authorAvatarView.width == 16
-        authorAvatarView.height == 16
+        authorAvatarView.width == .ratioWidthBasedOniPhoneX(16)
+        authorAvatarView.height == .ratioHeightBasedOniPhoneX(16)
         authorAvatarView.leading == titleLabel.leading
-        authorAvatarView.top == titleLabel.bottom + 8
+        authorAvatarView.top == titleLabel.bottom + .ratioHeightBasedOniPhoneX(8)
 
         metaLabel.leading == authorAvatarView.trailing + .ratioWidthBasedOniPhoneX(6)
         metaLabel.trailing == titleLabel.trailing

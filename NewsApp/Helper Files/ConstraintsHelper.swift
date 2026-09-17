@@ -284,3 +284,16 @@ extension UIApplication {
         return nil
     }
 }
+
+extension UILayoutGuide {
+    
+    var leading: NSLayoutXAxisAnchor { leadingAnchor }
+    var trailing: NSLayoutXAxisAnchor { trailingAnchor }
+    var top: NSLayoutYAxisAnchor { topAnchor }
+    var bottom: NSLayoutYAxisAnchor { bottomAnchor }
+    var centerX: NSLayoutXAxisAnchor { centerXAnchor }
+    var centerY: NSLayoutYAxisAnchor { centerYAnchor }
+    var width: NSLayoutDimension { widthAnchor }
+    var height: NSLayoutDimension { heightAnchor }
+    
+}

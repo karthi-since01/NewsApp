@@ -138,6 +138,23 @@ final class ArticleService: ArticleServiceProtocol {
         session.request("\(baseURL)/articles/\(id)/", method: .get)
             .validate()
             .responseDecodable(of: Article.self, decoder: decoder) { [weak self] response in
+
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                print("📰 ARTICLE DETAIL API")
+                print("➡️ Method: GET")
+                print("➡️ Endpoint: \(self?.baseURL)/articles/\(id)/")
+                print("⬅️ Response Status Code: \(response.response?.statusCode ?? 0)")
+                print("📦 RAW FULL RESPONSE:")
+                
+                if let data = response.data,
+                   let rawResponse = String(data: data, encoding: .utf8) {
+                    print(rawResponse)
+                } else {
+                    print("❌ No response data")
+                }
+
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
                 self?.handle(response: response, completion: completion)
             }
     }

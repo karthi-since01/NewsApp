@@ -18,9 +18,13 @@ final class CategoryChipCell: UICollectionViewCell {
         return label
     }()
 
-    override var isSelected: Bool {
-        didSet { updateAppearance() }
-    }
+    /// Deliberately NOT using UICollectionViewCell's built-in `isSelected`.
+    /// UIKit drives that property itself on touch-down/touch-up and during
+    /// cell reuse, which races with any manual assignment we make in
+    /// `cellForItemAt` and can silently undo it. Owning our own flag, set
+    /// only through `configure(title:isSelected:)`, makes this the single
+    /// source of truth for the chip's appearance.
+    private var isChipSelected = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +34,12 @@ final class CategoryChipCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupViews()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        isChipSelected = false
+        updateAppearance()
     }
 
     private func setupViews() {
@@ -45,12 +55,14 @@ final class CategoryChipCell: UICollectionViewCell {
         updateAppearance()
     }
 
-    func configure(title: String) {
+    func configure(title: String, isSelected: Bool) {
         titleLabel.text = title
+        isChipSelected = isSelected
+        updateAppearance()
     }
 
     private func updateAppearance() {
-        if isSelected {
+        if isChipSelected {
             contentView.backgroundColor = .themePrimary
             contentView.layer.borderColor = UIColor.themePrimary.cgColor
             titleLabel.textColor = .white

@@ -92,9 +92,9 @@ class NewsFeedViewController: UIViewController {
 
         setupLayout()
         setupTableView()
+        setupSearchField()
         setupBindings()
 
-        searchField.textField.delegate = self
         viewModel.start()
     }
 
@@ -137,10 +137,9 @@ class NewsFeedViewController: UIViewController {
         loadingIndicator.centerX == tableView.centerX
         loadingIndicator.centerY == tableView.centerY - 40
 
-        emptyStateLabel.centerX == tableView.centerX
         emptyStateLabel.centerY == tableView.centerY - 40
         emptyStateLabel.leading == tableView.leading + .ratioWidthBasedOniPhoneX(32)
-        emptyStateLabel.trailing == tableView.trailing - 32
+        emptyStateLabel.trailing == tableView.trailing - .ratioWidthBasedOniPhoneX(32)
     }
 
     private func setupTableView() {
@@ -148,6 +147,11 @@ class NewsFeedViewController: UIViewController {
         tableView.delegate = self
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+
+    private func setupSearchField() {
+        searchField.textField.delegate = self
+        searchField.textField.addTarget(self, action: #selector(searchTextFieldDidChange(_:)), for: .editingChanged)
     }
 
     private func setupBindings() {
@@ -223,6 +227,11 @@ class NewsFeedViewController: UIViewController {
     @objc private func handleRefresh() {
         viewModel.refresh()
     }
+
+    @objc private func searchTextFieldDidChange(_ textField: UITextField) {
+        let query = textField.text ?? ""
+        viewModel.search(query)
+    }
 }
 
 // MARK: - UITableViewDataSource / UITableViewDelegate
@@ -251,9 +260,12 @@ extension NewsFeedViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let article = viewModel.article(at: indexPath.row)
-        let detailViewController = ArticleDetailViewController(article: article)
-        navigationController?.pushViewController(detailViewController, animated: true)
+
+        let pagerVC = ArticlePagerViewController(
+            articles: (0..<viewModel.numberOfArticles).map { viewModel.article(at: $0) },
+            initialIndex: indexPath.row
+        )
+        navigationController?.pushViewController(pagerVC, animated: true)
     }
 }
 
@@ -273,12 +285,13 @@ extension NewsFeedViewController: UICollectionViewDataSource, UICollectionViewDe
             return UICollectionViewCell()
         }
 
-        cell.configure(title: viewModel.categories[indexPath.item])
+        cell.configure(title: viewModel.categories[indexPath.item], isSelected: false)
         cell.isSelected = indexPath.item == selectedCategoryIndex
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.item != selectedCategoryIndex else { return }
         selectedCategoryIndex = indexPath.item
         viewModel.didSelectCategory(viewModel.categories[indexPath.item])
         collectionView.reloadData()
@@ -289,10 +302,8 @@ extension NewsFeedViewController: UICollectionViewDataSource, UICollectionViewDe
 
 extension NewsFeedViewController: UITextFieldDelegate {
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = (textField.text as NSString?) ?? ""
-        let updatedText = currentText.replacingCharacters(in: range, with: string)
-        viewModel.search(updatedText)
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        viewModel.clearSearch()
         return true
     }
 

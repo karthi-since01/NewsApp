@@ -94,13 +94,13 @@ final class NewsFeedViewModel {
         
         currentOffset += pageSize
         
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("📄 PAGINATION")
-        print("➡️ Loading next page")
-        print("➡️ Current Index: \(currentIndex)")
-        print("➡️ Offset: \(currentOffset)")
-        print("➡️ Page Size: \(pageSize)")
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+//        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+//        print("PAGINATION")
+//        print("Loading next page")
+//        print("Current Index: \(currentIndex)")
+//        print("Offset: \(currentOffset)")
+//        print("Page Size: \(pageSize)")
+//        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         
         fetch(state: .loadingMore)
     }
